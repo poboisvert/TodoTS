@@ -1,16 +1,16 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-
-interface IProps {
-  color?: string;
-}
-
-const App = (props: IProps): JSX.Element => {
-  return <div>{props.color}</div>;
-};
+import { createStore, applyMiddleware } from "redux";
+import { Provider } from "react-redux";
+import thunk from "redux-thunk";
+import { App } from "./components/App";
+import { reducers } from "./reducers";
+const store = createStore(reducers, applyMiddleware(thunk));
 
 export default ReactDOM.render(
-  <App color="blue" />,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.querySelector("#root")
 );
 

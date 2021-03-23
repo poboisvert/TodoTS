@@ -5,16 +5,19 @@ interface IProps {
   color?: string;
 }
 
-interface State {
-  counter: number;
-}
-class App extends React.Component<IProps, State> {
-  // this.state = { counter: 0 }; // Property method
+const App = (props: IProps): JSX.Element => {
+  return <div>{props.color}</div>;
+};
 
-  constructor(props: IProps) {
-    super(props);
-    this.state = { counter: 0 }; // Constructor Method
-  }
+export default ReactDOM.render(
+  <App color="blue" />,
+  document.querySelector("#root")
+);
+
+/* 
+
+class App extends React.Component<IProps> {
+  state = { counter: 0 }; // Property method
 
   onIcrement = (): void => {
     this.setState({ counter: this.state.counter + 1 });
@@ -34,3 +37,4 @@ class App extends React.Component<IProps, State> {
   }
 }
 ReactDOM.render(<App />, document.querySelector("#root"));
+ */
